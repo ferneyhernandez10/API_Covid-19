@@ -1,5 +1,24 @@
 import React, { useEffect, useState } from "react";
 import DataCovid19History from "./DataCovid19History";
+import styled from "styled-components";
+
+const TableContainer = styled.div`
+  margin: 2rem;
+  border: 1px solid;
+  border-color: black;
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-between;
+`;
+
+const Header = styled.div`
+  padding: 1rem;
+  width: 100%;
+`;
 
 const GetDataCovid19History = () => {
   const [dataCovid19History, setDataCovid19History] = useState({});
@@ -17,15 +36,17 @@ const GetDataCovid19History = () => {
   }, []);
 
   const headerRow = Object.keys(dataCovid19History).map((header, index) => (
-    <div key={index}>{header}</div>
+    <Header key={index}>{header}</Header>
   ));
   // const records =Object.entries(dataCovid19History)
   return (
     <>
-      <div>{headerRow}</div>
-      <div>
-        <DataCovid19History dataCovid19History={dataCovid19History} />
-      </div>
+      <TableContainer>
+        <Row>{headerRow}</Row>
+        <div>
+          <DataCovid19History dataCovid19History={dataCovid19History} />
+        </div>
+      </TableContainer>
     </>
   );
 };
